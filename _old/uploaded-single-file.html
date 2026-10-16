@@ -1,0 +1,1298 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Mission Ready Medical Staffing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700;800&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Black & Emerald: a single dark theme by design. Token names are historical:
+   --navy = deep green panel, --brass = emerald accent text, --brass-bright = emerald fill. */
+:root{
+  --bg:#07090A; --surface:#0E1213; --surface-2:#161C1E; --ink:#F3F6F5; --ink-2:#9AA6A9; --line:#222B2D;
+  --navy:#0B1F18; --navy-2:#113026; --on-navy:#F3F6F5; --on-navy-2:#A3B8AF;
+  --brass:#34D399; --brass-bright:#10B981; --silver:#C9D1D6; --ready:#34D399; --ready-bg:#0D2A20; --ok:#10B981;
+  --display:"Saira Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+  --gutter:max(16px, 4vw);
+  --nav:64px;
+  --scroll:0;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 1rem/1.6 var(--body);-webkit-font-smoothing:antialiased;overflow-x:clip}
+.wrap{max-width:1200px;margin-inline:auto;padding-inline:var(--gutter)}
+h1,h2,h3{font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.01em;line-height:.95;text-wrap:balance;margin:0}
+h2{font-size:clamp(2.2rem,5vw,3.8rem)}
+h3{font-size:1.45rem;letter-spacing:.02em}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--brass-bright);outline-offset:3px;border-radius:2px}
+.eyebrow{font:500 .74rem/1.3 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--brass)}
+.lede{font-size:1.125rem;color:var(--ink-2);max-width:60ch}
+.ph{font-family:var(--mono);font-size:.85em;color:var(--brass);border-bottom:1px dashed currentColor;white-space:nowrap}
+section.block{padding-block:clamp(64px,9vw,120px)}
+
+/* progress + nav */
+.progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:30;background:transparent;pointer-events:none}
+.progress i{display:block;height:100%;background:var(--brass-bright);transform-origin:0 50%;transform:scaleX(var(--doc,0))}
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;height:var(--nav);background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:100%}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand svg{flex:none}
+.brand b{font:700 1.3rem/1 var(--display);text-transform:uppercase;letter-spacing:.03em;display:block}
+.brand small{font:500 .62rem/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2)}
+.links{display:flex;gap:22px;align-items:center;font-size:.9rem;font-weight:500}
+.links a{text-decoration:none;color:var(--ink-2)}
+.links a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:600 .95rem/1 var(--body);padding:14px 22px;border-radius:3px;text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:transform .2s,background .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--brass-bright);color:#03140D}
+.btn-primary:hover{background:#34D399}
+.btn-ghost{border-color:var(--ink);color:var(--ink);background:transparent}
+.btn-ghost:hover{background:var(--surface-2)}
+.links .btn{padding:10px 16px;color:#03140D}
+@media (max-width:880px){.links a:not(.btn){display:none}}
+
+/* ===== HERO ===== */
+/* The hero is intentionally dark in both themes: it is the WebGL "storm" stage. */
+.hero{position:relative;height:260vh;background:#07090A}
+.hero-stage{position:sticky;top:calc(var(--nav) + env(safe-area-inset-top,0px));height:calc(100vh - var(--nav));height:calc(100svh - var(--nav));overflow:hidden;display:flex;align-items:center;color:#FFFFFF;
+  background:radial-gradient(40% 60% at 72% 50%,#0D3B2B 0%,#081410 55%,#07090A 100%)}
+#storm{position:absolute;inset:0;width:100%;height:100%;display:block}
+/* scrim: keeps the copy column dark whatever the orb is doing behind it */
+.hero-stage::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(90deg,rgba(7,9,10,.92) 0%,rgba(7,9,10,.78) 34%,rgba(7,9,10,0) 62%)}
+.hero-copy{position:relative;z-index:2;width:100%;opacity:calc(1 - var(--p,0) * 1.8);text-shadow:0 2px 24px rgba(0,0,0,.9)}
+.hero-copy > *{max-width:620px}
+.hero.gone .hero-copy{visibility:hidden}
+.hero .eyebrow{color:#34D399}
+.hero h1{font-size:clamp(3rem,7.6vw,7.2rem);line-height:.86;font-weight:800;margin-top:20px;color:#FFFFFF;max-width:none}
+@media (max-width:760px){
+  .hero-stage{align-items:flex-end;padding-bottom:72px;background:radial-gradient(70% 45% at 50% 30%,#0D3B2B 0%,#081410 60%,#07090A 100%)}
+  .hero-stage::after{background:linear-gradient(0deg,rgba(7,9,10,.95) 0%,rgba(7,9,10,.85) 42%,rgba(7,9,10,0) 70%)}
+  .hero h1{font-size:clamp(2.8rem,13vw,4.2rem)}
+}
+.hero h1 .line{display:block;overflow:hidden;padding-bottom:.04em}
+.hero h1 .line > span{display:inline-block;animation:rise .9s cubic-bezier(.2,.8,.2,1) both}
+.hero h1 .l1 > span{transform-origin:left}
+.hero h1 .l2 > span{animation-delay:.12s;color:#10B981}
+.hero h1 .l1{transform:translateX(calc(var(--p,0) * -14vw))}
+.hero h1 .l2{transform:translateX(calc(var(--p,0) * 10vw))}
+@keyframes rise{from{transform:translateY(105%)}to{transform:none}}
+.hero .lede{color:#D5DCDF;margin-top:26px;animation:fade .8s .35s both}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px;animation:fade .8s .5s both}
+.hero .btn-ghost{border-color:rgba(201,209,214,.7);color:#FFFFFF}
+.hero .btn-ghost:hover{background:rgba(201,209,214,.12)}
+@keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.cue{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:10px;font:500 .68rem/1.3 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:#C9D1D6;text-decoration:none;opacity:calc(1 - var(--p,0) * 4)}
+.cue i{width:1.5px;height:40px;background:linear-gradient(#10B981,transparent);animation:drip 1.8s infinite}
+@keyframes drip{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@media (max-height:640px){.cue{display:none}}
+
+/* ===== MARQUEE ===== */
+.marquee{border-block:1px solid var(--line);background:var(--navy);color:var(--on-navy);overflow:hidden;padding-block:14px}
+.marquee .row{display:flex;gap:0;white-space:nowrap;width:max-content;font:700 clamp(1.4rem,3vw,2.2rem)/1.15 var(--display);text-transform:uppercase;letter-spacing:.04em}
+.marquee .row span{padding-inline:22px;display:inline-flex;align-items:center;gap:44px}
+.marquee .row span::after{content:"";width:10px;height:10px;background:var(--brass-bright);transform:rotate(45deg)}
+.marquee .r1{transform:translateX(calc(var(--p,0) * -30%))}
+.marquee .r2{transform:translateX(calc(-30% + var(--p,0) * 30%));color:transparent;-webkit-text-stroke:1px var(--on-navy-2)}
+
+/* ===== STRIP ===== */
+.strip{background:var(--surface);border-bottom:1px solid var(--line)}
+.strip .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+.strip div{padding:28px 20px 26px;border-left:1px solid var(--line)}
+.strip div:first-child{border-left:0;padding-left:0}
+.strip b{display:block;font:700 2.8rem/1 var(--display);letter-spacing:.01em;font-variant-numeric:tabular-nums}
+.strip span{display:block;margin-top:6px;font-size:.88rem;color:var(--ink-2);max-width:26ch}
+@media (max-width:760px){.strip .wrap{grid-template-columns:1fr 1fr}.strip div:nth-child(3){border-left:0;padding-left:0}.strip div:nth-child(n+3){border-top:1px solid var(--line)}}
+
+/* ===== CLEARANCE (pinned) ===== */
+.clear-intro{padding-block:clamp(64px,9vw,120px) 24px}
+.clear-intro .wrap{display:grid;grid-template-columns:1fr 1fr;gap:20px 48px;align-items:end}
+@media (max-width:800px){.clear-intro .wrap{grid-template-columns:1fr}}
+.pin{height:360vh;position:relative}
+.pin-stage{position:sticky;top:calc(var(--nav) + env(safe-area-inset-top,0px));height:calc(100vh - var(--nav));height:calc(100svh - var(--nav));display:flex;align-items:center}
+.pin-stage .wrap{width:100%;display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(24px,5vw,72px);align-items:center}
+.readout .count{font:800 clamp(4.5rem,11vw,9rem)/.85 var(--display);letter-spacing:-.01em;font-variant-numeric:tabular-nums;color:var(--ink)}
+.readout .count small{font-size:.38em;color:var(--ink-2);font-weight:600;margin-left:6px}
+.readout h3{font-size:clamp(1.5rem,2.6vw,2.1rem);margin-top:18px;min-height:2em}
+.readout p{color:var(--ink-2);margin-top:10px;max-width:42ch;min-height:4.8em}
+.rail{display:flex;gap:6px;margin-top:22px}
+.rail i{flex:1;height:4px;background:var(--line);border-radius:2px;transition:background .3s}
+.rail i.on{background:var(--brass-bright)}
+.file{background:var(--navy);color:var(--on-navy);border-radius:5px;padding:24px 24px 20px;box-shadow:0 0 0 1px rgba(16,185,129,.18),0 30px 60px -30px rgba(0,0,0,.8);position:relative;transform:rotate(calc((1 - var(--p,0)) * 2deg)) translateY(calc((1 - var(--p,0)) * 20px))}
+.file::before{content:"";position:absolute;top:-11px;left:24px;width:120px;height:12px;background:var(--navy);border-radius:5px 5px 0 0}
+.file-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.14)}
+.file-head .k{font:500 .68rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--on-navy-2)}
+.file-head .v{font:700 1.6rem/1.1 var(--display);text-transform:uppercase;margin-top:6px;letter-spacing:.02em}
+.sample{font:500 .62rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--on-navy-2);color:var(--on-navy-2);padding:5px 7px;border-radius:2px;white-space:nowrap}
+.checks{list-style:none;margin:4px 0 0;padding:0;font-size:.92rem}
+.checks li{display:grid;grid-template-columns:20px 1fr auto;gap:12px;align-items:center;padding:10px 0;border-bottom:1px dashed rgba(255,255,255,.12);color:var(--on-navy-2);transition:color .35s}
+.checks .box{width:18px;height:18px;border:1.5px solid rgba(255,255,255,.35);border-radius:3px;display:grid;place-items:center;transition:all .35s}
+.checks .box svg{opacity:0;transform:scale(.4);transition:all .35s cubic-bezier(.3,1.6,.5,1)}
+.checks .st{font:500 .66rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;padding:5px 7px;border-radius:2px;border:1px solid rgba(255,255,255,.2);white-space:nowrap;transition:all .35s}
+.checks li.done{color:var(--on-navy)}
+.checks li.done .box{background:var(--ok);border-color:var(--ok)}
+.checks li.done .box svg{opacity:1;transform:none}
+.checks li.done .st{color:#0E2A1D;background:var(--ok);border-color:var(--ok)}
+.checks li.active{color:var(--on-navy)}
+.checks li.active .box{border-color:var(--brass-bright);box-shadow:0 0 0 4px rgba(16,185,129,.28)}
+.meter{height:4px;background:rgba(255,255,255,.12);border-radius:2px;margin-top:16px;overflow:hidden}
+.meter i{display:block;height:100%;background:var(--ok);transform-origin:0 50%;transform:scaleX(var(--p,0))}
+.file-foot{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font:500 .72rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--on-navy-2)}
+.stamp{position:absolute;right:18px;bottom:52px;border:3px solid var(--ok);color:var(--ok);font:800 1.5rem/1 var(--display);text-transform:uppercase;letter-spacing:.06em;padding:10px 14px;border-radius:4px;text-align:center;transform:rotate(-9deg) scale(1.8);opacity:0;transition:transform .35s cubic-bezier(.3,1.5,.5,1),opacity .2s;pointer-events:none;background:rgba(6,18,13,.9)}
+.stamp small{display:block;font:500 .6rem/1.4 var(--mono);letter-spacing:.14em;margin-top:4px}
+.file.cleared .stamp{opacity:1;transform:rotate(-9deg) scale(1)}
+@media (max-width:820px){
+  .pin{height:420vh}
+  .pin-stage .wrap{grid-template-columns:1fr;gap:18px}
+  .readout .count{font-size:3.4rem}
+  .readout h3{margin-top:8px;min-height:0;font-size:1.3rem}
+  .readout p{min-height:4.8em;font-size:.9rem;margin-top:6px}
+  .rail{margin-top:12px}
+  .file{padding:18px 16px 14px}
+  .checks{font-size:.82rem}.checks li{padding:7px 0;gap:10px}
+  .file-head .v{font-size:1.25rem}
+  .stamp{font-size:1.15rem;bottom:40px}
+}
+
+/* ===== AUDIENCES ===== */
+.sec-head{display:grid;grid-template-columns:1fr 1fr;gap:20px 48px;align-items:end;margin-bottom:48px}
+.sec-head .eyebrow{grid-column:1/-1}
+@media (max-width:800px){.sec-head{grid-template-columns:1fr}}
+.paths{display:grid;grid-template-columns:repeat(3,1fr);border-top:2px solid var(--ink)}
+.path{padding:28px 26px 30px 0;display:flex;flex-direction:column;gap:14px;transform:translateY(calc((1 - var(--p,1)) * var(--lag) * 90px))}
+.path:nth-child(1){--lag:.3}.path:nth-child(2){--lag:.7}.path:nth-child(3){--lag:1.1}
+.path + .path{padding-left:26px;border-left:1px solid var(--line)}
+.path .tag{font:500 .72rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+.path p{color:var(--ink-2)}
+.path ul{margin:0;padding:0;list-style:none;display:grid;gap:8px;font-size:.93rem}
+.path li{padding-left:18px;position:relative}
+.path li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:2px;background:var(--brass-bright)}
+.path .more{margin-top:auto;font-weight:600;font-size:.93rem;text-decoration:none;border-bottom:1.5px solid var(--brass-bright);align-self:flex-start;padding-bottom:2px}
+@media (max-width:860px){.paths{grid-template-columns:1fr}.path,.path + .path{padding:24px 0;border-left:0;border-top:1px solid var(--line);transform:none}.path:first-child{border-top:0}}
+
+/* ===== STANDARD timeline ===== */
+.standard{background:var(--surface);border-block:1px solid var(--line)}
+.std{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,6vw,96px);align-items:start}
+.std-head{position:sticky;top:calc(var(--nav) + 48px)}
+.std-head .lede{margin-top:20px}
+.promise{margin-top:28px;padding:18px 20px;border:1px solid var(--line);border-radius:4px;background:var(--bg);font-size:.95rem;color:var(--ink-2);max-width:48ch}
+.promise b{display:block;font:700 1.15rem/1.2 var(--display);text-transform:uppercase;letter-spacing:.03em;color:var(--ink);margin-bottom:4px}
+.timeline{list-style:none;margin:0;padding:0 0 0 44px;position:relative;display:grid;gap:44px}
+.timeline::before,.timeline::after{content:"";position:absolute;left:11px;top:6px;bottom:6px;width:2px;background:var(--line)}
+.timeline::after{background:var(--brass-bright);transform-origin:top;transform:scaleY(var(--p,0))}
+.timeline li{position:relative;display:grid;gap:8px}
+.timeline li::before{content:"";position:absolute;left:-44px;top:2px;width:24px;height:24px;border-radius:50%;background:var(--surface);border:2px solid var(--line);z-index:1;transition:all .4s}
+.timeline li.lit::before{border-color:var(--brass-bright);background:var(--brass-bright);box-shadow:0 0 0 6px color-mix(in srgb,var(--brass-bright) 22%,transparent)}
+.timeline .n{font:500 .74rem/1 var(--mono);letter-spacing:.12em;color:var(--ink-2);transition:color .4s}
+.timeline li.lit .n{color:var(--brass)}
+.timeline h3{font-size:clamp(1.8rem,3.2vw,2.6rem);color:var(--ink-2);transition:color .4s}
+.timeline li.lit h3{color:var(--ink)}
+.timeline p{color:var(--ink-2);max-width:48ch}
+.timeline .items{font:400 .78rem/1.6 var(--mono);color:var(--ink-2)}
+@media (max-width:860px){.std{grid-template-columns:1fr}.std-head{position:static}}
+
+/* ===== FEDERAL (expanding panel) ===== */
+.fed-shell{padding-block:clamp(24px,4vw,48px)}
+.federal{background:var(--navy);color:var(--on-navy);padding-block:clamp(64px,9vw,120px);clip-path:inset(0 calc((1 - var(--p,1)) * 7vw) round calc((1 - var(--p,1)) * 32px))}
+.federal .eyebrow{color:var(--brass-bright)}
+.federal .lede{color:var(--on-navy-2)}
+.fed-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(32px,5vw,72px);align-items:start}
+.federal h2{font-size:clamp(2.6rem,6.4vw,5.2rem);line-height:.9}
+.federal h2 em{font-style:normal;color:var(--brass-bright)}
+.fed-grid ul{margin:32px 0 0;padding:0;list-style:none;display:grid;gap:20px}
+.fed-grid li{display:grid;grid-template-columns:28px 1fr;gap:12px}
+.fed-grid li svg{color:var(--brass-bright);margin-top:3px}
+.fed-grid li b{display:block;font-weight:600}
+.fed-grid li span{color:var(--on-navy-2);font-size:.93rem}
+.capab{border:1px solid rgba(255,255,255,.18);border-radius:4px;padding:24px;background:rgba(255,255,255,.03)}
+.capab h3{font-size:1.25rem;margin-top:8px}
+.capab dl{margin:14px 0 0;display:grid;grid-template-columns:auto 1fr}
+.capab dt,.capab dd{padding:10px 0;border-top:1px solid rgba(255,255,255,.12);margin:0;font-size:.88rem}
+.capab dt{font:500 .72rem/1.5 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--on-navy-2);padding-right:18px;padding-top:12px}
+.capab .ph{color:var(--brass-bright)}
+.capab .note{font-size:.78rem;color:var(--on-navy-2);margin-top:14px}
+@media (max-width:860px){.fed-grid{grid-template-columns:1fr}}
+
+/* ===== LEAN ===== */
+.lean-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.ledger{border:1px solid var(--line);background:var(--surface);border-radius:4px;padding:26px}
+.ledger h3{font-size:1.3rem}
+.ledger ul{list-style:none;margin:16px 0 0;padding:0}
+.ledger li{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-top:1px solid var(--line);font-size:.98rem}
+.ledger li span:last-child{font:500 .72rem/1.9 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);white-space:nowrap}
+.ledger.cut li span:first-child{position:relative;color:var(--ink-2)}
+.ledger.cut li span:first-child::after{content:"";position:absolute;left:-2px;right:-2px;top:52%;height:2px;background:var(--brass-bright);transform-origin:left;transform:scaleX(clamp(0, calc(var(--p,1) * 4 - var(--i) * .7), 1))}
+.ledger.keep{border-color:var(--ready);box-shadow:inset 0 4px 0 var(--ready)}
+.ledger.keep li span:last-child{color:var(--ready)}
+.ledger.keep li{opacity:clamp(.35, calc(var(--p,1) * 4 - var(--i) * .7), 1)}
+@media (max-width:760px){.lean-grid{grid-template-columns:1fr}}
+
+/* ===== CLINICIANS ===== */
+.clin{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,64px);align-items:start}
+.types{display:grid;margin-top:28px;border-top:2px solid var(--ink)}
+.types div{display:grid;grid-template-columns:120px 1fr;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+.types b{font:700 1.25rem/1.2 var(--display);text-transform:uppercase;letter-spacing:.03em}
+.types span{color:var(--ink-2);font-size:.95rem}
+@media (max-width:420px){.types div{grid-template-columns:1fr;gap:4px}}
+form.apply{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:26px;display:grid;gap:16px}
+form.apply h3{font-size:1.5rem}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:480px){.row2{grid-template-columns:1fr}}
+label{display:grid;gap:6px;font-size:.82rem;font-weight:600}
+input,select{font:400 .95rem var(--body);padding:11px 12px;border:1px solid var(--line);border-radius:3px;background:var(--bg);color:var(--ink);width:100%}
+input:focus,select:focus{outline:2px solid var(--brass-bright);outline-offset:0;border-color:transparent}
+fieldset{border:0;padding:0;margin:0;display:flex;gap:8px;flex-wrap:wrap}
+legend{font-size:.82rem;font-weight:600;margin-bottom:6px;padding:0}
+.chip{position:relative;display:inline-block}
+.chip input{position:absolute;opacity:0;width:1px;height:1px}
+.chip span{display:inline-block;padding:8px 14px;border:1px solid var(--line);border-radius:3px;font-size:.88rem;font-weight:500;cursor:pointer;background:var(--bg)}
+.chip input:checked + span{background:var(--brass-bright);color:#03140D;border-color:var(--brass-bright)}
+.chip input:focus-visible + span{outline:2px solid var(--brass-bright);outline-offset:2px}
+.form-msg{font-size:.88rem;padding:12px 14px;border-radius:3px;background:var(--ready-bg);color:var(--ready)}
+.fine{font-size:.8rem;color:var(--ink-2)}
+
+/* ===== FOUNDER ===== */
+.founder{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(32px,5vw,72px);align-items:start}
+.portrait{aspect-ratio:4/5;max-width:100%;background:repeating-linear-gradient(135deg,var(--surface-2) 0 12px,var(--surface) 12px 24px);border:1px solid var(--line);border-radius:4px;display:grid;place-items:center;text-align:center;padding:20px;color:var(--ink-2);font:500 .78rem/1.5 var(--mono);letter-spacing:.08em;text-transform:uppercase;transform:translateY(calc((0.5 - var(--p,.5)) * 60px))}
+.quote{font:600 clamp(1.4rem,2.8vw,2.1rem)/1.3 var(--body);letter-spacing:-.015em;text-wrap:pretty;max-width:34ch}
+.quote .w{opacity:clamp(.22, calc(var(--p,1) * 4 - var(--k) * 1.4), 1);transition:opacity .15s}
+.founder .body{display:grid;gap:16px;margin-top:26px;color:var(--ink-2);max-width:62ch}
+.sig{margin-top:24px;display:flex;flex-direction:column;gap:4px}
+.sig b{font:700 1.3rem/1 var(--display);text-transform:uppercase;letter-spacing:.03em}
+.sig span{font:400 .8rem/1.4 var(--mono);color:var(--ink-2)}
+@media (max-width:800px){.founder{grid-template-columns:1fr}.portrait{max-width:260px;transform:none}}
+
+/* ===== CLOSING ===== */
+.closing{background:var(--navy);color:var(--on-navy);overflow:hidden}
+.closing .big{font:800 clamp(3rem,11vw,9.5rem)/.85 var(--display);text-transform:uppercase;white-space:nowrap;transform:translateX(calc((1 - var(--p,1)) * 30%));color:var(--on-navy)}
+.closing .big span{color:var(--brass-bright)}
+.closing .row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:24px;margin-top:36px}
+.closing .lede{color:var(--on-navy-2)}
+.closing .ph{color:var(--brass-bright)}
+.btn-brass{background:var(--brass-bright);color:#03140D}
+/* ===== FOOTER ===== */
+.site-footer{background:#050607;border-top:1px solid var(--line);color:var(--ink-2);font-size:.92rem;overflow:hidden}
+.ft-top{display:grid;grid-template-columns:1.3fr repeat(3,1fr) 1.2fr;gap:40px 32px;padding-block:72px 48px}
+.ft-brand p{margin-top:18px;max-width:34ch}
+.ft-badge{display:inline-flex;align-items:center;gap:10px;margin-top:22px;padding:9px 12px;border:1px solid rgba(16,185,129,.35);border-radius:3px;font:500 .68rem/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--silver)}
+.ft-badge i{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px rgba(16,185,129,.18)}
+.ft-col h4{margin:0 0 16px;font:500 .7rem/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--silver)}
+.ft-col ul{list-style:none;margin:0;padding:0;display:grid;gap:11px}
+.ft-col a{text-decoration:none;color:var(--ink-2);transition:color .2s}
+.ft-col a:hover{color:var(--brass)}
+.ft-contact dl{margin:0;display:grid;gap:14px}
+.ft-contact dt{font:500 .66rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);margin-bottom:5px}
+.ft-contact dd{margin:0;color:var(--ink)}
+.ft-contact .btn{margin-top:20px;padding:12px 18px}
+.ft-mark{font:800 clamp(3.4rem,15.5vw,15rem)/.8 var(--display);text-transform:uppercase;letter-spacing:-.01em;white-space:nowrap;color:transparent;-webkit-text-stroke:1px rgba(16,185,129,.35);
+  transform:translateY(calc((1 - var(--p,1)) * 40%));user-select:none;padding-inline:var(--gutter);text-align:center}
+.ft-mark span{color:rgba(16,185,129,.12)}
+.ft-bottom{border-top:1px solid var(--line);padding-block:22px;font-size:.8rem}
+.ft-bottom .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px 24px}
+.ft-legal{display:flex;flex-wrap:wrap;gap:8px 20px}
+.ft-legal a{text-decoration:none;color:var(--ink-2)}
+.ft-legal a:hover{color:var(--ink)}
+.to-top{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--silver);font:500 .7rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase}
+.to-top:hover{color:var(--brass)}
+@media (max-width:1000px){.ft-top{grid-template-columns:1fr 1fr 1fr}.ft-brand,.ft-contact{grid-column:span 3}}
+@media (max-width:600px){.ft-top{grid-template-columns:1fr 1fr;padding-block:56px 36px}.ft-brand,.ft-contact{grid-column:1/-1}}
+@media (prefers-reduced-motion:reduce){.ft-mark{transform:none}}
+
+/* ===== CONCEPT NOTES ===== */
+.notes{border-top:6px double var(--line)}
+.notes-banner{display:flex;flex-wrap:wrap;gap:10px 24px;align-items:end;justify-content:space-between;margin-bottom:40px}
+.notes-banner p{color:var(--ink-2);max-width:58ch}
+.kit{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:24px;display:grid;gap:14px;align-content:start}
+.card.wide{grid-column:1/-1}
+.card p,.card li{font-size:.93rem;color:var(--ink-2)}
+.card ul{margin:0;padding-left:20px;display:grid;gap:8px}
+.taglines{list-style:none;padding:0 !important}
+.taglines li{font:700 1.35rem/1.15 var(--display);text-transform:uppercase;color:var(--ink);letter-spacing:.02em;padding:10px 0;border-top:1px solid var(--line)}
+.taglines li small{display:block;font:400 .8rem/1.5 var(--body);text-transform:none;letter-spacing:0;color:var(--ink-2);margin-top:4px}
+.copybox{background:var(--bg);border:1px solid var(--line);border-radius:3px;padding:16px;font-size:.93rem}
+.copybox p{color:var(--ink)}
+.copybox .lbl{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.copy-btn{font:500 .7rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;background:none;border:1px solid var(--line);color:var(--ink-2);padding:6px 9px;border-radius:2px;cursor:pointer}
+.copy-btn:hover{color:var(--ink);border-color:var(--ink-2)}
+.voice{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.voice div{border-top:2px solid var(--ink);padding-top:12px}
+.voice b{font:700 1.15rem/1 var(--display);text-transform:uppercase;letter-spacing:.03em;display:block;margin-bottom:6px}
+.say{display:grid;grid-template-columns:1fr 1fr;gap:16px;font-size:.88rem}
+.say div{display:grid;gap:6px;align-content:start}
+.say h4{margin:0;font:500 .7rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase}
+.say .yes h4{color:var(--ready)} .say .no h4{color:var(--brass)}
+.say span{color:var(--ink-2)}
+.swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px}
+.sw{border:1px solid var(--line);border-radius:3px;overflow:hidden;font:400 .72rem/1.4 var(--mono);color:var(--ink-2)}
+.sw i{display:block;height:52px}
+.sw div{padding:8px 10px}
+.sw b{display:block;font-family:var(--body);font-weight:600;color:var(--ink);font-size:.82rem}
+.specimen{display:grid;gap:12px}
+.specimen div{display:grid;grid-template-columns:90px 1fr;gap:14px;align-items:baseline;border-top:1px solid var(--line);padding-top:10px}
+.specimen span{font:400 .72rem/1.4 var(--mono);color:var(--ink-2)}
+.todo{list-style:none;padding:0 !important}
+.todo li{display:grid;grid-template-columns:18px 1fr;gap:10px;align-items:start}
+.todo li::before{content:"";width:12px;height:12px;border:1.5px solid var(--brass);border-radius:2px;margin-top:5px}
+.todo b{color:var(--ink);font-weight:600}
+@media (max-width:760px){.kit,.voice,.say{grid-template-columns:1fr}.card.wide{grid-column:auto}}
+
+/* reduced motion: everything static, file fully cleared */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none !important;transition:none !important}
+  .chevrons,.hero h1 .l1,.hero h1 .l2,.path,.file,.portrait,.closing .big,.marquee .row{transform:none !important}
+  .federal{clip-path:none}
+  .pin{height:auto}.pin-stage{position:static;height:auto;padding-block:24px 64px}
+}
+</style>
+
+<div class="progress" aria-hidden="true"><i></i></div>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Mission Ready Medical Staffing, home">
+      <svg width="38" height="38" viewBox="0 0 38 38" aria-hidden="true">
+        <rect width="38" height="38" rx="4" fill="var(--navy)"/>
+        <path d="M9 22 L19 15 L29 22" fill="none" stroke="var(--on-navy)" stroke-width="3.2"/>
+        <path d="M9 29 L19 22 L29 29" fill="none" stroke="var(--on-navy)" stroke-width="3.2" opacity=".55"/>
+        <rect x="17.4" y="5" width="3.2" height="8" fill="var(--brass-bright)"/>
+        <rect x="15" y="7.4" width="8" height="3.2" fill="var(--brass-bright)"/>
+      </svg>
+      <span><b>Mission Ready</b><small>Medical Staffing</small></span>
+    </a>
+    <nav class="links" aria-label="Primary">
+      <a href="#facilities">Facilities</a>
+      <a href="#federal">VA &amp; Federal</a>
+      <a href="#clinicians">Nurses &amp; CNAs</a>
+      <a href="#standard">Our Standard</a>
+      <a class="btn btn-primary" href="#request">Request staff</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<!-- HERO -->
+<section class="hero" id="hero" data-scene="pin">
+  <div class="hero-stage">
+    <canvas id="storm" aria-hidden="true"></canvas>
+    <div class="wrap hero-copy">
+      <p class="eyebrow">Service-disabled veteran-owned · RN &amp; CNA staffing</p>
+      <h1><span class="line l1"><span>Cleared before</span></span><span class="line l2"><span>they clock in.</span></span></h1>
+      <p class="lede">Fully credentialed RNs and CNAs for long-term care, assisted living, hospitals and VA medical centers, available per diem, contract or travel. Every file is verified and audit-ready before day one.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#request">Request staff</a>
+        <a class="btn btn-ghost" href="#clinicians">Find shifts</a>
+      </div>
+    </div>
+    <a class="cue" href="#clearance">Scroll<i></i></a>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee" data-scene="through" aria-hidden="true">
+  <div class="row r1"><span>Per diem</span><span>Contract</span><span>Travel</span><span>VA-ready</span><span>Audit-ready</span><span>Per diem</span><span>Contract</span><span>Travel</span><span>VA-ready</span><span>Audit-ready</span><span>Per diem</span><span>Contract</span><span>Travel</span><span>VA-ready</span><span>Audit-ready</span></div>
+  <div class="row r2"><span>Registered Nurses</span><span>Certified Nursing Assistants</span><span>Registered Nurses</span><span>Certified Nursing Assistants</span><span>Registered Nurses</span><span>Certified Nursing Assistants</span><span>Registered Nurses</span><span>Certified Nursing Assistants</span></div>
+</div>
+
+<!-- STRIP -->
+<div class="strip" id="strip">
+  <div class="wrap">
+    <div><b><span data-count="35">35</span> yrs</b><span>Executive contract &amp; regulatory compliance leadership</span></div>
+    <div><b><span data-count="100">100</span>%</b><span>Service-disabled veteran-owned and operated</span></div>
+    <div><b>Zero</b><span>Candidates deployed with an incomplete file. Ever.</span></div>
+    <div><b>RN · CNA</b><span>Per diem, contract and travel placements</span></div>
+  </div>
+</div>
+
+<!-- CLEARANCE -->
+<section class="clear-intro" id="clearance">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">The Mission Ready Standard, live</p>
+      <h2 style="margin-top:14px">Watch a file<br>get cleared.</h2>
+    </div>
+    <p class="lede">Most agencies credential clinicians. We audit them. Keep scrolling: this is the file every Mission Ready nurse completes before they're allowed near your unit.</p>
+  </div>
+</section>
+<div class="pin" data-scene="pin" id="pin">
+  <div class="pin-stage">
+    <div class="wrap">
+      <div class="readout" aria-live="polite">
+        <div class="count"><span id="cnum">00</span><small>/ 07</small></div>
+        <h3 id="ctitle">File opened</h3>
+        <p id="cdesc">A new RN applicant. Nothing is assumed, nothing is carried over from another agency.</p>
+        <div class="rail" id="rail"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+      <div class="file" id="file">
+        <div class="file-head">
+          <div><div class="k">Candidate file · RN-0417</div><div class="v">Registered Nurse</div></div>
+          <span class="sample">Sample</span>
+        </div>
+        <ul class="checks" id="checks"></ul>
+        <div class="meter"><i></i></div>
+        <div class="file-foot"><span id="fstatus">In review</span><span>Mission Ready</span></div>
+        <div class="stamp">Cleared to deploy<small>Audit-ready · 2-person sign-off</small></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AUDIENCES -->
+<section class="block" id="facilities" data-scene="enter">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Who we serve</p>
+      <h2>One standard.<br>Three missions.</h2>
+      <p class="lede">A facility, a VA medical center and a nurse all want the same thing from a staffing partner: someone who does what they said, when they said, with the paperwork to prove it.</p>
+    </div>
+    <div class="paths">
+      <article class="path">
+        <span class="tag">Private sector</span>
+        <h3>Long-term care, assisted living &amp; hospitals</h3>
+        <p>Fill open shifts without gambling on who walks through the door.</p>
+        <ul>
+          <li>Per diem coverage for call-offs and census spikes</li>
+          <li>Contract RNs and CNAs for 8 to 13 week needs</li>
+          <li>Files ready for state surveyors and accreditation reviews</li>
+          <li>Competitive bill rates from a lean, digital operation</li>
+        </ul>
+        <a class="more" href="#request">Request staff</a>
+      </article>
+      <article class="path">
+        <span class="tag">Public sector</span>
+        <h3>VA medical centers &amp; federal facilities</h3>
+        <p>A veteran-owned partner that knows what federal compliance demands.</p>
+        <ul>
+          <li>Documentation built to federal contract requirements</li>
+          <li>Exclusion screening against OIG LEIE and SAM.gov</li>
+          <li>Clinicians who understand who they're caring for</li>
+          <li>SDVOSB set-aside eligible <span class="ph">[confirm VetCert]</span></li>
+        </ul>
+        <a class="more" href="#federal">Federal capabilities</a>
+      </article>
+      <article class="path">
+        <span class="tag">Clinicians</span>
+        <h3>Registered Nurses &amp; CNAs</h3>
+        <p>Premium shifts, a schedule you set, and a recruiter who picks up.</p>
+        <ul>
+          <li>Per diem, contract and travel assignments</li>
+          <li>Competitive pay, because our overhead is low</li>
+          <li>We track your renewals so nothing lapses</li>
+          <li>Onboarding done once, done right</li>
+        </ul>
+        <a class="more" href="#clinicians">See how it works</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- STANDARD -->
+<section class="block standard" id="standard">
+  <div class="wrap std">
+    <div class="std-head">
+      <p class="eyebrow">The process</p>
+      <h2 style="margin-top:14px">Every file.<br>Every time.</h2>
+      <p class="lede">Our process comes from 35 years in contract and compliance work, where a file either passes review or it doesn't. There is no "mostly complete."</p>
+      <div class="promise"><b>Our promise</b>If a document is missing, the clinician doesn't deploy. We'd rather call you about a delay than send you a liability.</div>
+    </div>
+    <ol class="timeline" id="timeline" data-scene="center">
+      <li><span class="n">STEP 1</span><h3>Screen</h3><p>Structured interview, clinical skills checklist and a fit check against your unit.</p><span class="items">Interview · Skills checklist · Specialty match</span></li>
+      <li><span class="n">STEP 2</span><h3>Verify</h3><p>Licenses and certifications confirmed at the primary source, never from a photocopy.</p><span class="items">Nursys · State CNA registry · BLS/ACLS</span></li>
+      <li><span class="n">STEP 3</span><h3>Clear</h3><p>Background, drug screen, health records and federal exclusion checks.</p><span class="items">Background · Drug screen · TB/titers · OIG · SAM · I-9</span></li>
+      <li><span class="n">STEP 4</span><h3>Audit</h3><p>A second reviewer checks the full file against your facility's and contract's requirements, then signs off.</p><span class="items">Two-person review · Requirement matrix · Sign-off</span></li>
+      <li><span class="n">STEP 5</span><h3>Deploy</h3><p>Confirmed shift, orientation packet, and a check-in before the clinician arrives.</p><span class="items">Shift confirmation · Orientation · Pre-shift call</span></li>
+      <li><span class="n">STEP 6</span><h3>Sustain</h3><p>Expirations tracked and renewed ahead of time, with facility feedback after every assignment.</p><span class="items">Expiry alerts · Feedback loop · Re-audit</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- FEDERAL -->
+<div class="fed-shell">
+<section class="federal" id="federal" data-scene="enter">
+  <div class="wrap fed-grid">
+    <div>
+      <p class="eyebrow">VA &amp; Federal</p>
+      <h2 style="margin-top:14px">Veterans <em>serving</em> veterans' care.</h2>
+      <p class="lede" style="margin-top:22px">Mission Ready was founded by a 100% service-disabled veteran who knows the VA from the patient side. We bring military accountability and federal-grade documentation to every VA staffing requirement.</p>
+      <ul>
+        <li><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M4 13 L11 8 L18 13" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M4 18 L11 13 L18 18" fill="none" stroke="currentColor" stroke-width="2.4" opacity=".5"/></svg><div><b>Contract discipline</b><span>Thirty-five years reading, negotiating and delivering against executive contracts. We meet the performance work statement as written.</span></div></li>
+        <li><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M4 13 L11 8 L18 13" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M4 18 L11 13 L18 18" fill="none" stroke="currentColor" stroke-width="2.4" opacity=".5"/></svg><div><b>Audit-ready by default</b><span>Every clinician file can go to a contracting officer's representative on request, complete and indexed.</span></div></li>
+        <li><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><path d="M4 13 L11 8 L18 13" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M4 18 L11 13 L18 18" fill="none" stroke="currentColor" stroke-width="2.4" opacity=".5"/></svg><div><b>Continuity of care</b><span>Backfill planning is part of every placement, so a sick call never becomes an uncovered unit.</span></div></li>
+      </ul>
+    </div>
+    <div class="capab" aria-label="Capabilities snapshot">
+      <p class="eyebrow">Capabilities snapshot</p>
+      <h3>Mission Ready Medical Staffing</h3>
+      <dl>
+        <dt>Status</dt><dd>Service-Disabled Veteran-Owned Small Business <span class="ph">[SBA VetCert]</span></dd>
+        <dt>NAICS</dt><dd>561320 Temporary Help Services<br>561311 Employment Placement Agencies</dd>
+        <dt>UEI</dt><dd><span class="ph">[SAM.gov UEI]</span></dd>
+        <dt>CAGE</dt><dd><span class="ph">[CAGE code]</span></dd>
+        <dt>Roles</dt><dd>Registered Nurses · Certified Nursing Assistants</dd>
+        <dt>Engagement</dt><dd>Per diem · Contract · Travel</dd>
+      </dl>
+      <p class="note">Bracketed items are placeholders to complete before launch.</p>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- LEAN -->
+<section class="block" data-scene="enter" id="lean">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Lean by design</p>
+      <h2>Less overhead.<br>Better rates on both sides.</h2>
+      <p class="lede">We run digitally, with no branch offices and no layers of management. The savings go where they belong: lower bill rates for facilities and stronger pay for our nurses.</p>
+    </div>
+    <div class="lean-grid">
+      <div class="ledger cut">
+        <h3>What we don't pay for</h3>
+        <ul>
+          <li style="--i:1"><span>Branch office leases</span><span>Cut</span></li>
+          <li style="--i:2"><span>Regional management layers</span><span>Cut</span></li>
+          <li style="--i:3"><span>Paper files &amp; fax workflows</span><span>Cut</span></li>
+          <li style="--i:4"><span>Mass-market advertising</span><span>Cut</span></li>
+        </ul>
+      </div>
+      <div class="ledger keep">
+        <h3>Where it goes instead</h3>
+        <ul>
+          <li style="--i:1"><span>Competitive clinician pay</span><span>Invested</span></li>
+          <li style="--i:2"><span>Competitive facility bill rates</span><span>Invested</span></li>
+          <li style="--i:3"><span>Compliance review on every file</span><span>Invested</span></li>
+          <li style="--i:4"><span>Recruiters who answer the phone</span><span>Invested</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLINICIANS -->
+<section class="block standard" id="clinicians">
+  <div class="wrap clin">
+    <div>
+      <p class="eyebrow">For RNs &amp; CNAs</p>
+      <h2 style="margin-top:14px">Your shifts.<br>Your schedule.<br>Real support.</h2>
+      <p class="lede" style="margin-top:20px">You're a professional, and you should be treated like one. We pay competitively, tell you the truth about every assignment, and handle the paperwork so you can focus on patients.</p>
+      <div class="types">
+        <div><b>Per diem</b><span>Pick up shifts that fit your life at facilities near you. Work as much or as little as you want.</span></div>
+        <div><b>Contract</b><span>Steady local assignments, typically 8 to 13 weeks, with a set schedule.</span></div>
+        <div><b>Travel</b><span>Assignments outside your area, including VA medical centers, with housing support <span class="ph">[confirm]</span>.</span></div>
+      </div>
+    </div>
+    <form class="apply" id="apply" novalidate>
+      <h3>Join the roster</h3>
+      <p class="fine" style="margin-top:-8px">Two minutes. A recruiter follows up within one business day.</p>
+      <fieldset>
+        <legend>I'm a</legend>
+        <label class="chip"><input type="radio" name="role" id="role-rn" value="RN" checked><span>Registered Nurse</span></label>
+        <label class="chip"><input type="radio" name="role" id="role-cna" value="CNA"><span>CNA</span></label>
+      </fieldset>
+      <div class="row2">
+        <label for="a-name">Full name<input id="a-name" name="name" autocomplete="name" required></label>
+        <label for="a-state">License state<select id="a-state" name="state"><option>Select state</option><option>Compact (multistate)</option><option>Alabama</option><option>Florida</option><option>Georgia</option><option>North Carolina</option><option>Texas</option><option>Virginia</option><option>Other</option></select></label>
+      </div>
+      <div class="row2">
+        <label for="a-email">Email<input id="a-email" type="email" name="email" autocomplete="email" required></label>
+        <label for="a-phone">Phone<input id="a-phone" type="tel" name="phone" autocomplete="tel"></label>
+      </div>
+      <fieldset>
+        <legend>Interested in</legend>
+        <label class="chip"><input type="checkbox" id="i-pd" checked><span>Per diem</span></label>
+        <label class="chip"><input type="checkbox" id="i-ct"><span>Contract</span></label>
+        <label class="chip"><input type="checkbox" id="i-tr"><span>Travel</span></label>
+        <label class="chip"><input type="checkbox" id="i-va"><span>VA assignments</span></label>
+      </fieldset>
+      <button class="btn btn-primary" type="submit">Submit application</button>
+      <p class="form-msg" id="apply-msg" hidden></p>
+    </form>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section class="block" data-scene="through" id="founder">
+  <div class="wrap founder">
+    <div class="portrait">Founder portrait<br>[photo to supply]</div>
+    <div>
+      <p class="eyebrow">Why "Mission"</p>
+      <p class="quote" id="quote" style="margin-top:18px">"In the military, you don't leave a post uncovered and you don't report ready until you are. That's how I run this company."</p>
+      <div class="body">
+        <p>I spent 35 years in executive contract and compliance roles in mortgage and real estate, industries where one missing signature can unwind a deal and every file has to survive an audit. Before that, I served. The military taught me what accountability means; the private sector taught me how to document it.</p>
+        <p>Mission Ready brings both to healthcare staffing. When a facility calls us, a patient's care is on the line. We treat every shift like a mission: prepared, on time, and complete.</p>
+      </div>
+      <div class="sig"><b><span class="ph" style="font:inherit;color:inherit">[Founder name]</span></b><span>Founder &amp; CEO · 100% Service-Disabled Veteran · <span class="ph">[Branch]</span></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="block closing" id="request" data-scene="enter">
+  <div class="wrap">
+    <p class="eyebrow" style="color:var(--brass-bright)">Open shift?</p>
+    <div class="big" style="margin-top:14px">Report <span>ready.</span></div>
+    <div class="row">
+      <p class="lede">Tell us the unit, the role and the dates. We'll confirm coverage and send you clinician files you can audit yourself.</p>
+      <div style="display:grid;gap:10px;justify-items:start">
+        <a class="btn btn-brass" href="#request">Request staff</a>
+        <p class="fine" style="color:var(--on-navy-2)">Or call <span class="ph">[phone]</span> · <span class="ph">[email]</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer" data-scene="enter">
+  <div class="wrap ft-top">
+    <div class="ft-brand">
+      <a class="brand" href="#top" aria-label="Mission Ready Medical Staffing, back to top">
+        <svg width="38" height="38" viewBox="0 0 38 38" aria-hidden="true">
+          <rect width="38" height="38" rx="4" fill="var(--navy)"/>
+          <path d="M9 22 L19 15 L29 22" fill="none" stroke="var(--on-navy)" stroke-width="3.2"/>
+          <path d="M9 29 L19 22 L29 29" fill="none" stroke="var(--on-navy)" stroke-width="3.2" opacity=".55"/>
+          <rect x="17.4" y="5" width="3.2" height="8" fill="var(--brass-bright)"/>
+          <rect x="15" y="7.4" width="8" height="3.2" fill="var(--brass-bright)"/>
+        </svg>
+        <span><b style="color:var(--ink)">Mission Ready</b><small>Medical Staffing</small></span>
+      </a>
+      <p>Fully credentialed, audit-ready RNs and CNAs for long-term care, hospitals and VA medical centers. Cleared before they clock in.</p>
+      <span class="ft-badge"><i></i>Service-disabled veteran-owned</span>
+    </div>
+
+    <nav class="ft-col" aria-label="Facilities">
+      <h4>Facilities</h4>
+      <ul>
+        <li><a href="#request">Request staff</a></li>
+        <li><a href="#facilities">Long-term care</a></li>
+        <li><a href="#facilities">Assisted living</a></li>
+        <li><a href="#facilities">Hospitals &amp; clinics</a></li>
+        <li><a href="#standard">Our compliance standard</a></li>
+      </ul>
+    </nav>
+
+    <nav class="ft-col" aria-label="Clinicians">
+      <h4>Nurses &amp; CNAs</h4>
+      <ul>
+        <li><a href="#clinicians">Join the roster</a></li>
+        <li><a href="#clinicians">Per diem shifts</a></li>
+        <li><a href="#clinicians">Contract assignments</a></li>
+        <li><a href="#clinicians">Travel &amp; VA assignments</a></li>
+        <li><a href="#clearance">How onboarding works</a></li>
+      </ul>
+    </nav>
+
+    <nav class="ft-col" aria-label="Company">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#founder">About the founder</a></li>
+        <li><a href="#federal">VA &amp; federal</a></li>
+        <li><a href="#federal">Capabilities statement</a></li>
+        <li><a href="#lean">Why our rates are lower</a></li>
+        <li><a href="#request">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="ft-col ft-contact">
+      <h4>Get in touch</h4>
+      <dl>
+        <div><dt>Shift line</dt><dd><span class="ph">[phone]</span></dd></div>
+        <div><dt>Email</dt><dd><span class="ph">[email]</span></dd></div>
+        <div><dt>Service area</dt><dd><span class="ph">[launch states]</span></dd></div>
+      </dl>
+      <a class="btn btn-primary" href="#request">Request staff</a>
+    </div>
+  </div>
+
+  <div class="ft-mark" aria-hidden="true">Mission <span>Ready</span></div>
+
+  <div class="ft-bottom">
+    <div class="wrap">
+      <span>© 2026 Mission Ready Medical Staffing <span class="ph">[LLC]</span>. All rights reserved.</span>
+      <nav class="ft-legal" aria-label="Legal">
+        <a href="#top">Privacy policy</a>
+        <a href="#top">Terms of use</a>
+        <a href="#top">Accessibility</a>
+        <a href="#top">Equal opportunity employer</a>
+      </nav>
+      <a class="to-top" href="#top">Back to top <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 8 L6 4 L10 8" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ CONCEPT NOTES ============ -->
+<section class="block notes" id="brand">
+  <div class="wrap">
+    <div class="notes-banner">
+      <div>
+        <p class="eyebrow">Concept notes: not part of the live site</p>
+        <h2 style="margin-top:12px">Brand kit, v0.1</h2>
+      </div>
+      <p>Everything above is draft website copy you can use. Below are the pieces behind it: taglines, boilerplate, voice, the visual system and motion rules, plus the details I need from you before launch.</p>
+    </div>
+    <div class="kit">
+      <div class="card">
+        <p class="eyebrow">Tagline options</p>
+        <ul class="taglines">
+          <li>Cleared before they clock in.<small>Recommended. Leads with the audit-ready promise and works for facilities and the VA.</small></li>
+          <li>Every shift covered. Every file complete.<small>Plain and operational. Good for proposals and LinkedIn.</small></li>
+          <li>Precision staffing. Uninterrupted care.<small>Leans into the military heritage. Good as a sub-line under the logo.</small></li>
+          <li>Report ready.<small>Short, veteran vernacular. Use for recruiting ads aimed at nurses.</small></li>
+        </ul>
+      </div>
+      <div class="card">
+        <p class="eyebrow">Boilerplate</p>
+        <div class="copybox"><div class="lbl"><span class="eyebrow" style="color:var(--ink-2)">One-liner</span><button class="copy-btn" type="button" data-copy="c1">Copy</button></div>
+          <p id="c1">Mission Ready Medical Staffing is a service-disabled veteran-owned agency placing fully credentialed, audit-ready RNs and CNAs with long-term care, hospital and VA facilities.</p></div>
+        <div class="copybox"><div class="lbl"><span class="eyebrow" style="color:var(--ink-2)">About</span><button class="copy-btn" type="button" data-copy="c2">Copy</button></div>
+          <p id="c2">Mission Ready Medical Staffing provides Registered Nurses and Certified Nursing Assistants to long-term care facilities, assisted living communities, hospitals and VA medical centers on a per diem, contract and travel basis. Founded by a 100% service-disabled veteran with 35 years of executive contract and compliance experience, Mission Ready verifies and audits every clinician file before deployment. A lean, digital operation keeps overhead low, delivering competitive bill rates to facilities and competitive pay to nurses.</p></div>
+      </div>
+      <div class="card wide">
+        <p class="eyebrow">Voice</p>
+        <div class="voice">
+          <div><b>Precise</b><p>Say exactly what we do and when. Name the checks, the sources and the timelines. Specifics build trust faster than adjectives.</p></div>
+          <div><b>Accountable</b><p>Make promises we can keep, and own it when we can't. "We'll call you about a delay before we send an incomplete file."</p></div>
+          <div><b>Respectful</b><p>Military discipline without barked orders. Nurses are professionals and facility managers are busy, so write to both like peers.</p></div>
+        </div>
+        <div class="say">
+          <div class="yes"><h4>Say</h4><span>Audit-ready · Verified at the source · Cleared to deploy · Covered · Accountable · Continuity of care · Report ready</span></div>
+          <div class="no"><h4>Avoid</h4><span>"Rockstar nurses" · "Best-in-class" · "Synergy" · Combat metaphors ("boots on the ground," "battle") · Any claim we can't document</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <p class="eyebrow">Color</p>
+        <div class="swatches">
+          <div class="sw"><i style="background:#07090A"></i><div><b>Tactical Black</b>#07090A</div></div>
+          <div class="sw"><i style="background:#10B981"></i><div><b>Mission Emerald</b>#10B981</div></div>
+          <div class="sw"><i style="background:#C9D1D6"></i><div><b>Dog-Tag Silver</b>#C9D1D6</div></div>
+          <div class="sw"><i style="background:#0B1F18"></i><div><b>Deep Field</b>#0B1F18</div></div>
+          <div class="sw"><i style="background:#FFFFFF"></i><div><b>White</b>#FFFFFF</div></div>
+        </div>
+        <p>Near-black gives the brand a modern, high-contrast edge. Emerald is the single action color for buttons, "verified" states and key words. Silver, a nod to dog tags, is for secondary details. Keep emerald scarce so it always means "go."</p>
+      </div>
+      <div class="card">
+        <p class="eyebrow">Type &amp; motion</p>
+        <div class="specimen">
+          <div><span>Display</span><strong style="font:700 1.6rem/1 var(--display);text-transform:uppercase">Saira Condensed</strong></div>
+          <div><span>Body</span><strong style="font:500 1.1rem/1.2 var(--body)">Public Sans</strong></div>
+          <div><span>Records</span><strong style="font:500 1rem/1.2 var(--mono)">IBM Plex Mono</strong></div>
+        </div>
+        <p>Public Sans comes from the U.S. Web Design System that federal sites use, which gives it quiet credibility with VA buyers. For motion, the scroll effects all tell one story: a file moving from pending to cleared. Chevrons rise, checks tick, a stamp lands. Visitors who turn on reduced motion get the finished, static page.</p>
+      </div>
+      <div class="card wide">
+        <p class="eyebrow">Before launch: what I need from you</p>
+        <ul class="todo">
+          <li><span><b>Founder name, branch of service and photo</b> for the "Why Mission" section.</span></li>
+          <li><span><b>SBA VetCert (SDVOSB) status.</b> Don't claim set-aside eligibility on the site until you're certified. The copy is marked where this applies.</span></li>
+          <li><span><b>SAM.gov registration, UEI and CAGE code</b> for the capabilities snapshot.</span></li>
+          <li><span><b>The states you'll launch in,</b> and any staffing-agency registrations or licenses those states require.</span></li>
+          <li><span><b>Pay practices to advertise</b> (weekly pay, benefits, travel housing stipend) so the nurse section can make concrete promises.</span></li>
+          <li><span><b>Phone, email, domain and legal entity name</b> for the footer and contact paths.</span></li>
+          <li><span><b>Accreditation plans,</b> such as Joint Commission Health Care Staffing Services certification, which many hospitals look for.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.documentElement;
+
+  /* ---- clearance file data ---- */
+  var steps = [
+    ['RN license, primary source','Nursys','License verified','Checked directly against Nursys and the state board of nursing, never from a photocopy.'],
+    ['BLS / ACLS current','AHA eCard','Certifications current','Every card validated with the issuer, with expiration dates logged for renewal alerts.'],
+    ['Background & drug screen','Cleared','Background cleared','Criminal background check and drug screen completed and on file.'],
+    ['OIG & SAM exclusion checks','LEIE · SAM','No exclusions','Screened against the OIG exclusion list and SAM.gov, the same checks federal buyers run.'],
+    ['TB, immunizations, titers','On file','Health records complete','TB screening, immunizations and titers documented to facility and VA requirements.'],
+    ['Skills checklist & 2 clinical refs','Verified','Competence confirmed','A specialty skills checklist plus two clinical supervisor references, all verified by phone.'],
+    ['Second-person file audit','Signed off','Audit signed off','A second reviewer checks the whole file against the contract. Only then is the clinician cleared.']
+  ];
+  var ck = '<svg width="12" height="12" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7" fill="none" stroke="#0E2A1D" stroke-width="2.6"/></svg>';
+  var list = document.getElementById('checks');
+  list.innerHTML = steps.map(function(s){
+    return '<li><span class="box">'+ck+'</span><span>'+s[0].replace('&','&amp;')+'</span><span class="st" data-src="'+s[1]+'">Pending</span></li>';
+  }).join('');
+  var lis = list.children, bars = document.getElementById('rail').children;
+  var cnum = document.getElementById('cnum'), ctitle = document.getElementById('ctitle'), cdesc = document.getElementById('cdesc');
+  var fileEl = document.getElementById('file'), fstatus = document.getElementById('fstatus');
+  var intro = ['File opened','A new RN applicant. Nothing is assumed, nothing is carried over from another agency.'];
+  var lastN = -1;
+  function setFile(n, cleared){
+    if (n === lastN && fileEl.classList.contains('cleared') === cleared) return;
+    lastN = n;
+    for (var i=0;i<lis.length;i++){
+      var done = i < n;
+      lis[i].classList.toggle('done', done);
+      lis[i].classList.toggle('active', i === n && n < 7);
+      var st = lis[i].lastChild; st.textContent = done ? st.dataset.src : (i === n ? 'Checking' : 'Pending');
+      bars[i].classList.toggle('on', done);
+    }
+    cnum.textContent = ('0'+n).slice(-2);
+    var s = n ? steps[n-1] : null;
+    ctitle.textContent = s ? s[2] : intro[0];
+    cdesc.textContent = s ? s[3] : intro[1];
+    fileEl.classList.toggle('cleared', cleared);
+    fstatus.textContent = cleared ? 'Cleared to deploy' : (n === 7 ? 'Final review' : 'In review');
+    fstatus.style.color = cleared ? 'var(--ok)' : '';
+  }
+
+  /* ---- counters ---- */
+  var counters = [].slice.call(document.querySelectorAll('[data-count]'));
+  var strip = document.getElementById('strip'), counted = false;
+  if (!reduce && strip.getBoundingClientRect().top > innerHeight) counters.forEach(function(c){ c.textContent = '0'; });
+  else counted = true;
+  function runCounters(){
+    counted = true;
+    var t0 = performance.now();
+    (function tick(t){
+      var k = Math.min(1, (t - t0) / 1400), e = 1 - Math.pow(1 - k, 3);
+      counters.forEach(function(c){ c.textContent = Math.round(+c.dataset.count * e); });
+      if (k < 1) requestAnimationFrame(tick);
+    })(t0);
+  }
+
+  /* ---- quote words ---- */
+  var q = document.getElementById('quote');
+  var words = q.textContent.split(' ');
+  q.innerHTML = words.map(function(w,i){ return '<span class="w" style="--k:'+(i/words.length).toFixed(3)+'">'+w+'</span>'; }).join(' ');
+
+  var timelineItems = [].slice.call(document.querySelectorAll('#timeline li'));
+  var scenes = [].slice.call(document.querySelectorAll('[data-scene]'));
+  var bar = document.querySelector('.progress');
+  function clamp(v){ return v < 0 ? 0 : v > 1 ? 1 : v; }
+
+  if (reduce){
+    setFile(7, true);
+    timelineItems.forEach(function(li){ li.classList.add('lit'); });
+    document.getElementById('timeline').style.setProperty('--p', 1);
+    return;
+  }
+
+  var ticking = false;
+  function update(){
+    ticking = false;
+    var vh = innerHeight, sy = scrollY, dh = document.documentElement.scrollHeight - vh;
+    bar.style.setProperty('--doc', dh > 0 ? (sy/dh).toFixed(4) : 0);
+    scenes.forEach(function(el){
+      var r = el.getBoundingClientRect(), p, mode = el.dataset.scene;
+      if (mode === 'pin') p = -r.top / Math.max(1, r.height - vh);
+      else if (mode === 'exit') p = -r.top / r.height;
+      else if (mode === 'enter') p = (vh - r.top) / (vh * .75);
+      else if (mode === 'center') p = (vh * .6 - r.top) / r.height;
+      else p = (vh - r.top) / (vh + r.height);
+      p = clamp(p);
+      el.style.setProperty('--p', p.toFixed(4));
+      if (el.id === 'hero') el.classList.toggle('gone', p > .55);
+      if (el.id === 'pin'){
+        fileEl.style.setProperty('--p', p.toFixed(4));
+        fileEl.querySelector('.meter').style.setProperty('--p', p.toFixed(4));
+        var n = Math.min(7, Math.floor(p * 8.4));
+        setFile(n, p > .9);
+      }
+    });
+    timelineItems.forEach(function(li){ li.classList.toggle('lit', li.getBoundingClientRect().top < vh * .6); });
+    if (!counted && strip.getBoundingClientRect().top < vh * .85) runCounters();
+  }
+  function onScroll(){ if (!ticking){ ticking = true; requestAnimationFrame(update); } }
+  addEventListener('scroll', onScroll, {passive:true});
+  addEventListener('resize', onScroll);
+  update();
+})();
+
+/* form + copy */
+(function(){
+  var form = document.getElementById('apply'), msg = document.getElementById('apply-msg');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('a-name').value.trim(), email = document.getElementById('a-email').value.trim();
+    msg.hidden = false;
+    if (!name || !email){ msg.style.background='var(--surface-2)'; msg.style.color='var(--ink)'; msg.textContent='Add your name and email so a recruiter can reach you.'; return; }
+    msg.style.background=''; msg.style.color='';
+    msg.textContent = 'Concept preview: this form isn’t connected yet. At launch, applications will go straight to your recruiting inbox.';
+  });
+  document.querySelectorAll('.copy-btn').forEach(function(b){
+    b.addEventListener('click', function(){
+      var el = document.getElementById(b.dataset.copy);
+      function sel(){ var r=document.createRange(); r.selectNodeContents(el); var s=getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent='Selected'; }
+      try { navigator.clipboard.writeText(el.textContent).then(function(){ b.textContent='Copied'; setTimeout(function(){ b.textContent='Copy'; },1600); }, sel); } catch(err){ sel(); }
+    });
+  });
+})();
+</script>
+
+<!-- ===== HERO: WebGL storm orb (Three.js r0.143.0) ===== -->
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.143.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.143.0/examples/jsm/"
+} }
+</script>
+<script type="module">
+import * as THREE from 'three'
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js'
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js'
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js'
+import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js'
+import { GammaCorrectionShader } from 'three/addons/shaders/GammaCorrectionShader.js'
+import { CopyShader } from 'three/addons/shaders/CopyShader.js'
+
+// Mission Ready palette mapped onto the storm's colour slots.
+const CONFIG = {
+  bgColor: '#06100C',      // near-black, green cast
+  flameColor: '#10B981',   // emerald corner flame
+  flameColor2: '#C9D1D6',  // silver
+  flameAmt: 0.2,
+  atmoColor: '#6EE7B7',    // mint motes
+  atmoCount: 300,
+  atmoSize: 24,
+  atmoSpeed: 1.0,
+  coreColor: '#053B2A',    // dark green core
+  midColor: '#10B981',     // emerald
+  rimColor: '#C9D1D6',     // silver rim
+  opacity: 2,
+  pointSize: 80,
+  brightness: 1.6,
+  spin: 0.03,
+  blowUp: 0,
+  repelRadius: 1.4,
+  repelStrength: 4,
+  scrollDive: 3,
+  scrollGrow: 0.5,
+  scrollSpin: 0.6,
+  parallax: 0.7,
+}
+
+const canvas = document.getElementById('storm')
+const hero = document.getElementById('hero')
+const stage = canvas.parentElement
+
+function hexToVec3(hex) {
+  const n = parseInt(hex.slice(1), 16)
+  return new THREE.Vector3(((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255)
+}
+const Lerp = (a, b, t) => a + (b - a) * t
+const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v))
+const size = () => ({ w: stage.clientWidth || innerWidth, h: stage.clientHeight || innerHeight })
+const DPR = Math.min(devicePixelRatio || 1, 2)
+
+let renderer = null
+try { renderer = new THREE.WebGL1Renderer({ canvas, antialias: true }) } catch (e) { renderer = null }
+
+if (renderer) {
+  let { w, h } = size()
+  renderer.setPixelRatio(DPR)
+  renderer.setSize(w, h, false)
+  renderer.shadowMap.enabled = true
+  renderer.shadowMap.type = THREE.VSMShadowMap
+
+  const scene = new THREE.Scene()
+  scene.background = new THREE.Color(0x000000)
+  scene.fog = new THREE.Fog(0x000000, 0, 15)
+  const camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 80)
+  camera.position.set(0, 0, 7)
+  scene.add(camera)
+
+  const LAYERS = { NONE: 0, TORUS_SCENE: 1, BLOOM_SCENE: 2, ENTIRE_SCENE: 3 }
+  camera.layers.enable(LAYERS.TORUS_SCENE)
+  camera.layers.enable(LAYERS.BLOOM_SCENE)
+  camera.layers.enable(LAYERS.ENTIRE_SCENE)
+
+  // ---- composers ----
+  const renderScene = new RenderPass(scene, camera)
+  const torusComposer = new EffectComposer(renderer)
+  torusComposer.renderToScreen = false
+  torusComposer.addPass(renderScene)
+  torusComposer.addPass(new ShaderPass(GammaCorrectionShader))
+  torusComposer.addPass(new UnrealBloomPass(new THREE.Vector2(w, h), 0.22, 0.2, 0))
+  torusComposer.addPass(new ShaderPass(CopyShader))
+
+  const bloomComposer = new EffectComposer(renderer)
+  bloomComposer.renderToScreen = false
+  bloomComposer.addPass(renderScene)
+  bloomComposer.addPass(new UnrealBloomPass(new THREE.Vector2(w, h), 0.4, 0.55, 0))
+  bloomComposer.addPass(new ShaderPass(GammaCorrectionShader))
+
+  const FinalPass = {
+    uniforms: {
+      iTime: { value: 0 },
+      tDiffuse: { value: null }, torusTexture: { value: null }, bloomTexture: { value: null }, haloTexture: { value: null },
+      uBg: { value: hexToVec3(CONFIG.bgColor) },
+      uFlameA: { value: hexToVec3(CONFIG.flameColor) },
+      uFlameB: { value: hexToVec3(CONFIG.flameColor2) },
+      uFlameAmt: { value: CONFIG.flameAmt }
+    },
+    vertexShader: `varying vec2 vUv; void main(){ vUv = uv; gl_Position = vec4(position, 1.0); }`,
+    fragmentShader: `
+uniform float iTime; uniform sampler2D tDiffuse; uniform sampler2D bloomTexture; uniform sampler2D torusTexture; uniform sampler2D haloTexture;
+uniform vec3 uBg; uniform vec3 uFlameA; uniform vec3 uFlameB; uniform float uFlameAmt;
+varying vec2 vUv;
+vec3 warp3d(vec3 pos, float t){ float curv=.8,a=1.9,b=0.7; pos*=2.;
+  pos.x+=curv*sin(t+a*pos.y)+t*b; pos.y+=curv*cos(t+a*pos.x);
+  pos.y+=curv*sin(t+a*pos.z)+t*b; pos.z+=curv*cos(t+a*pos.y);
+  pos.z+=curv*sin(t+a*pos.x)+t*b; pos.x+=curv*cos(t+a*pos.z);
+  return 0.5+0.5*cos(pos.xyz+vec3(1,2,4)); }
+void main(){
+  vec2 uv = 2.*vUv - 1.;
+  vec3 w = pow(warp3d(vec3(uv.x, sin(uv.y), uv.y), iTime*1.5), vec3(1.5));
+  vec3 flame = 1.5*uFlameA*w.x; flame*=w.y; flame += uFlameB*w.z;
+  flame *= smoothstep(0.25, 1., abs(uv.y));
+  float md = smoothstep(-0.7, 1., -uv.y*uv.x); flame *= md*md;
+  vec3 bg = uBg * (1.0 - 0.4 * length(uv));
+  vec3 halo = texture2D(haloTexture, vUv).xyz;
+  gl_FragColor = vec4(bg + flame*uFlameAmt + texture2D(bloomTexture, vUv).xyz + texture2D(torusTexture, vUv).xyz + texture2D(tDiffuse, vUv).xyz + halo, 1.);
+}`
+  }
+  const finalComposer = new EffectComposer(renderer)
+  finalComposer.addPass(renderScene)
+  const finalPass = new ShaderPass(FinalPass)
+  finalComposer.addPass(finalPass)
+  finalPass.uniforms.bloomTexture.value = bloomComposer.renderTarget1.texture
+  finalPass.uniforms.torusTexture.value = torusComposer.renderTarget1.texture
+
+  // ---- pointer (relative to the hero canvas, which sits below the nav) ----
+  const POINTER = { ndc: new THREE.Vector2(0, 0), world: new THREE.Vector3(), activity: 0, active: false, lastMove: performance.now() }
+  addEventListener('pointermove', e => {
+    const r = canvas.getBoundingClientRect()
+    POINTER.ndc.x = ((e.clientX - r.left) / r.width) * 2 - 1
+    POINTER.ndc.y = -(((e.clientY - r.top) / r.height) * 2 - 1)
+    POINTER.active = true; POINTER.lastMove = performance.now()
+  }, { passive: true })
+  addEventListener('mouseout', e => { if (!e.relatedTarget) POINTER.active = false }, { passive: true })
+  const _ndc = new THREE.Vector3(), _dir = new THREE.Vector3(), _target = new THREE.Vector3()
+  function updatePointer() {
+    _target.set(0, 0, 0)
+    if (POINTER.active) {
+      _ndc.set(POINTER.ndc.x, POINTER.ndc.y, 0.5).unproject(camera)
+      _dir.copy(_ndc).sub(camera.position).normalize()
+      const denom = _dir.z
+      if (Math.abs(denom) > 1e-4) {
+        const t = -camera.position.z / denom
+        if (t > 0 && Number.isFinite(t)) _target.copy(camera.position).addScaledVector(_dir, t)
+      }
+    }
+    POINTER.world.lerp(_target, 0.12)
+    const idle = (performance.now() - POINTER.lastMove) / 1000
+    const want = (POINTER.active && idle < 3) ? 1 : 0
+    POINTER.activity += (want - POINTER.activity) * 0.06
+  }
+
+  // ---- storm orb ----
+  const count = 50000, radius = 2.5
+  const positions = new Float32Array(count * 3)
+  const scales = new Float32Array(count)
+  const noises = new Float32Array(count)
+  const radialPush = new Float32Array(count)
+  const mixv = new Float32Array(count)
+  for (let i = 0; i < count; i++) {
+    const i3 = i * 3
+    let u, v, s
+    do { u = Math.random() * 2 - 1; v = Math.random() * 2 - 1; s = u * u + v * v } while (s >= 1 || s === 0)
+    const factor = 2 * Math.sqrt(1 - s)
+    const dx = u * factor, dy = v * factor, dz = 1 - 2 * s
+    const rN = Math.pow(Math.random(), 0.4)
+    const r = radius * (0.55 + rN * 0.45)
+    positions[i3] = dx * r; positions[i3 + 1] = dy * r; positions[i3 + 2] = dz * r
+    mixv[i] = rN
+    scales[i] = 0.45 + Math.random() * 0.8
+    noises[i] = Math.random()
+    radialPush[i] = 0.4 + rN * 1.1
+  }
+  const geo = new THREE.BufferGeometry()
+  geo.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3))
+  geo.setAttribute('aScale', new THREE.Float32BufferAttribute(scales, 1))
+  geo.setAttribute('aNoise', new THREE.Float32BufferAttribute(noises, 1))
+  geo.setAttribute('aRadialPush', new THREE.Float32BufferAttribute(radialPush, 1))
+  geo.setAttribute('aMix', new THREE.Float32BufferAttribute(mixv, 1))
+
+  const uniforms = {
+    uTime: { value: 0 },
+    uSize: { value: CONFIG.pointSize },
+    uOpacity: { value: 0 },
+    uBlowUp: { value: CONFIG.blowUp },
+    uCursor: { value: new THREE.Vector3() },
+    uRepelRadius: { value: CONFIG.repelRadius },
+    uRepelStrength: { value: CONFIG.repelStrength },
+    uActivity: { value: 0 },
+    uCore: { value: hexToVec3(CONFIG.coreColor) },
+    uMid: { value: hexToVec3(CONFIG.midColor) },
+    uRim: { value: hexToVec3(CONFIG.rimColor) },
+    uBrightness: { value: CONFIG.brightness },
+  }
+  const mat = new THREE.ShaderMaterial({
+    uniforms, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+    vertexShader: `
+uniform float uTime; uniform float uSize; uniform float uBlowUp;
+uniform vec3 uCursor; uniform float uRepelRadius; uniform float uRepelStrength; uniform float uActivity;
+uniform vec3 uCore; uniform vec3 uMid; uniform vec3 uRim;
+attribute float aScale; attribute float aNoise; attribute float aRadialPush; attribute float aMix;
+varying vec3 vColor; varying float vBlowUp;
+void main() {
+  vec3 pos = position;
+  float t = uTime * 1.4 + aNoise * 6.2831;
+  float wobble = sin(t) * 0.1 * aRadialPush;
+  pos *= 1.0 + wobble;
+  float swirlAngle = uTime * 0.05 + aNoise * 6.2831;
+  mat2 swirl = mat2(cos(swirlAngle), -sin(swirlAngle), sin(swirlAngle), cos(swirlAngle));
+  pos.xz = swirl * pos.xz;
+  vec3 outward = normalize(pos + vec3(0.0001));
+  float blow = uBlowUp * uBlowUp;
+  pos += outward * blow * (10.0 + aNoise * 18.0) * aRadialPush;
+  vec4 modelPosition = modelMatrix * vec4(pos, 1.0);
+  vec3 toParticle = modelPosition.xyz - uCursor;
+  float dist = length(toParticle);
+  float falloff = smoothstep(uRepelRadius, 0.0, dist);
+  modelPosition.xyz += normalize(toParticle + vec3(0.0001)) * falloff * uRepelStrength * uActivity;
+  vec4 viewPosition = viewMatrix * modelPosition;
+  gl_Position = projectionMatrix * viewPosition;
+  gl_PointSize = uSize * aScale;
+  gl_PointSize *= (1.0 / -viewPosition.z);
+  float t1 = smoothstep(0.25, 0.85, aMix);
+  vec3 mix1 = mix(uCore, uMid, t1);
+  float t2 = clamp((aMix - 0.7) * 3.0, 0.0, 1.0);
+  vColor = mix(mix1, uRim, t2);
+  vBlowUp = uBlowUp;
+}`,
+    fragmentShader: `
+uniform float uOpacity; uniform float uBrightness;
+varying vec3 vColor; varying float vBlowUp;
+void main() {
+  vec2 uv = gl_PointCoord - 0.5;
+  float d = length(uv);
+  if (d > 0.5) discard;
+  float strength = pow(1.0 - d * 2.0, 4.5);
+  vec3 color = mix(vec3(0.0), vColor, strength);
+  float blowFade = 1.0 - smoothstep(0.15, 1.0, vBlowUp);
+  gl_FragColor = vec4(color * uBrightness, strength * uOpacity * blowFade);
+}`
+  })
+  const points = new THREE.Points(geo, mat)
+  points.layers.enable(LAYERS.ENTIRE_SCENE)
+  const group = new THREE.Group()
+  group.add(points)
+  scene.add(group)
+
+  const storm = {
+    group, uniforms,
+    appearStart: performance.now(),
+    t0: performance.now() / 1000,
+    render(scroll, m) {
+      const t = performance.now() / 1000
+      const dt = Math.min(0.05, t - this.t0); this.t0 = t
+      this.uniforms.uTime.value = t
+      // Portrait screens pull the camera back so the orb fits the width.
+      const baseZ = w < 760 ? 7 * clamp(1.15 / (w / h), 1, 1.9) : 7
+      camera.position.set(m.x * CONFIG.parallax, m.y * CONFIG.parallax, baseZ - scroll * CONFIG.scrollDive)
+      camera.lookAt(0, 0, 0)
+      // Frame the orb away from the headline (right on desktop, up on phones),
+      // easing back to centre as the dive progresses.
+      const settle = 1 - clamp(scroll * 1.6, 0, 1)
+      const offX = w >= 760 ? -0.2 * w * settle : 0
+      const offY = w < 760 ? 0.2 * h * settle : 0
+      camera.setViewOffset(w, h, offX, offY, w, h)
+      this.group.scale.setScalar(1 + scroll * CONFIG.scrollGrow)
+      const elapsed = performance.now() - this.appearStart
+      const fade = Math.max(0, Math.min(1, (elapsed - 300) / 1400))
+      this.uniforms.uOpacity.value = fade * CONFIG.opacity
+      this.uniforms.uBlowUp.value = CONFIG.blowUp
+      this.uniforms.uCursor.value.copy(POINTER.world)
+      this.uniforms.uActivity.value = POINTER.activity
+      this.group.rotation.y += dt * (CONFIG.spin + scroll * CONFIG.scrollSpin)
+      this.group.rotation.x += dt * CONFIG.spin * 0.33
+    }
+  }
+
+  // ---- ambient motes ----
+  const N = Math.round(CONFIG.atmoCount)
+  const aPos = new Float32Array(N * 3), aSize = new Float32Array(N), aSeed = new Float32Array(N)
+  for (let i = 0; i < N; i++) {
+    aPos[i*3] = 2*Math.random()-1; aPos[i*3+1] = 2*Math.random()-1; aPos[i*3+2] = 2*Math.random()-1
+    aSize[i] = CONFIG.atmoSize * (0.4 + Math.random()); aSeed[i] = Math.random()
+  }
+  const aGeo = new THREE.BufferGeometry()
+  aGeo.setAttribute('position', new THREE.Float32BufferAttribute(aPos, 3))
+  aGeo.setAttribute('size', new THREE.Float32BufferAttribute(aSize, 1))
+  aGeo.setAttribute('seed', new THREE.Float32BufferAttribute(aSeed, 1))
+  const atmoMat = new THREE.ShaderMaterial({
+    transparent: true, blending: THREE.AdditiveBlending, depthWrite: false, depthTest: false,
+    uniforms: {
+      uTime: { value: 0 },
+      uColor: { value: hexToVec3(CONFIG.atmoColor) },
+      uRes: { value: new THREE.Vector2(w * DPR, h * DPR) }
+    },
+    vertexShader: `
+attribute float size; attribute float seed; uniform float uTime; uniform vec2 uRes;
+varying float vA;
+vec3 warp(vec3 p, float t){ float c=0.9,a=1.9,b=0.02,s=0.05; p*=2.;
+  p.x+=c*sin(s*t+a*p.y)+t*b; p.y+=c*cos(s*t+a*p.x); p.y+=c*sin(s*t+a*p.z)+t*b;
+  p.z+=c*cos(s*t+a*p.y); p.z+=c*sin(s*t+a*p.x)+t*b; p.x+=c*cos(s*t+a*p.z);
+  return cos(p+vec3(1,2,4)); }
+void main(){
+  vec3 v = position*4.0 + warp(position, uTime)*1.2;
+  vec4 mv = modelViewMatrix * vec4(v, 1.0);
+  float r = length(v); float farF = 1.0 - smoothstep(5.0, 6.5, r); float nearF = smoothstep(0.0, 0.5, -mv.z);
+  vA = farF * nearF;
+  gl_PointSize = size * uRes.y / 900.0 / -mv.z; gl_PointSize = max(gl_PointSize, 1.0);
+  gl_Position = projectionMatrix * mv;
+}`,
+    fragmentShader: `
+uniform vec3 uColor; varying float vA;
+void main(){ vec2 p = gl_PointCoord - 0.5; float l = length(p); if (l > 0.5) discard;
+  float tex = smoothstep(0.5, 0.0, l); gl_FragColor = vec4(uColor * tex, tex * vA * 0.6); }`
+  })
+  const pts = new THREE.Points(aGeo, atmoMat)
+  pts.frustumCulled = false
+  pts.layers.enable(LAYERS.ENTIRE_SCENE)
+  pts.onBeforeRender = () => {
+    const t = performance.now() / 1000
+    atmoMat.uniforms.uTime.value = t * CONFIG.atmoSpeed * 8.0
+    pts.position.copy(camera.position)
+    finalPass.uniforms.iTime.value = t
+  }
+  scene.add(pts)
+
+  // ---- scroll: progress through the pinned hero drives the dive ----
+  let scrollTarget = 0, scrollSmooth = 0, scrollCurrent = 0
+  const mouseSmooth = { x: 0, y: 0 }
+  let visible = true
+  function updateScroll() {
+    const r = hero.getBoundingClientRect()
+    const max = r.height - stage.clientHeight
+    scrollTarget = max > 0 ? clamp(-r.top / max, 0, 1) : 0
+    visible = r.bottom > 0 && r.top < innerHeight
+  }
+  addEventListener('scroll', updateScroll, { passive: true }); updateScroll()
+
+  function onResize() {
+    ({ w, h } = size())
+    renderer.setPixelRatio(DPR); renderer.setSize(w, h, false)
+    camera.aspect = w / h; camera.updateProjectionMatrix()
+    for (const c of [torusComposer, bloomComposer, finalComposer]) { c.setPixelRatio(DPR); c.setSize(w, h) }
+    atmoMat.uniforms.uRes.value.set(w * DPR, h * DPR)
+    updateScroll()
+  }
+  addEventListener('resize', onResize)
+
+  function render() {
+    requestAnimationFrame(render)
+    if (!visible) return
+    scrollSmooth = Lerp(scrollSmooth, scrollTarget, 0.10)
+    scrollCurrent = Lerp(scrollCurrent, scrollSmooth, 0.06)
+    mouseSmooth.x = Lerp(mouseSmooth.x, POINTER.ndc.x, 0.06)
+    mouseSmooth.y = Lerp(mouseSmooth.y, POINTER.ndc.y, 0.06)
+    updatePointer()
+    storm.render(scrollCurrent, mouseSmooth)
+    camera.layers.set(LAYERS.TORUS_SCENE);  torusComposer.render()
+    camera.layers.set(LAYERS.BLOOM_SCENE);  bloomComposer.render()
+    camera.layers.set(LAYERS.ENTIRE_SCENE); finalComposer.render()
+  }
+  render()
+}
+</script>
+
+</body></html>
