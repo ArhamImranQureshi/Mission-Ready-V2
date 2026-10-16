@@ -1,0 +1,1 @@
+Archived earlier snapshot. The live pages are in the parent folder (index.html, facilities.html, clinicians.html, founder.html). Do not deploy this folder.

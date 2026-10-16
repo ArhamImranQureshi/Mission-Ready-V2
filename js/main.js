@@ -62,14 +62,4 @@
     });
   });
 
-  /* demo forms */
-  $$('form[data-demo]').forEach(function(f){
-    var msg = f.querySelector('.form-msg');
-    f.addEventListener('submit', function(e){
-      e.preventDefault();
-      var bad = $$('[required]', f).some(function(i){ return !i.value.trim(); });
-      msg.hidden = false;
-      msg.textContent = bad ? 'Please fill in the required fields.' : 'Thank you. This form is a visual preview only and has not been sent.';
-    });
-  });
 })();
